@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:1.1.5")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:3.3.0")
+    }
+}
+
 plugins {
   id 'java'
   id 'org.springframework.boot' version '3.3.2'
@@ -11,6 +21,8 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'checkstyle'
 apply plugin: 'io.spring.javaformat'
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
 
 gradle.startParameter.excludedTaskNames += [ "checkFormatAot", "checkFormatAotTest" ]
 
@@ -23,7 +35,10 @@ java {
 
 repositories {
   mavenCentral()
-  maven { url 'https://repo.spring.io/milestone' }
+  maven { 
+    url 'https://repo.spring.io/milestone' 
+    url "https://repo.spring.io/plugins-release"
+  }
 }
 
 ext.webjarsFontawesomeVersion = "4.7.0"
@@ -59,6 +74,8 @@ dependencies {
 dependencyManagement {
   imports {
     mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.1"
+    mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:4.1.3"
   }
 }
 

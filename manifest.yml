@@ -1,0 +1,14 @@
+applications:
+- name: petclinic
+  memory: 1G
+  path: target/spring-petclinic-3.3.0-SNAPSHOT.jar
+  buildpack: java_buildpack_offline
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    SPRING_PROFILES_ACTIVE: 'mysql,openai'
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 21.+ } }'
+    DBTYPE: 'mysql'
+  services:
+  - petclinic-db
+  - petclinic-chat
+#  - petclinic-embded
