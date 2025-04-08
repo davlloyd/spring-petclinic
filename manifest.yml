@@ -1,7 +1,7 @@
 applications:
 - name: petclinic
   memory: 1G
-  path: target/spring-petclinic-3.3.0-SNAPSHOT.jar
+  path: target/spring-petclinic-3.4.0-SNAPSHOT.jar
   buildpack: java_buildpack_offline
   env:
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
